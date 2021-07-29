@@ -50,7 +50,7 @@ jobs:
     - name: Configure CMake
       run: |
         cmake ../.. -DBUILD_SHARED_LIBS=ON -DFLATCC_OFFSET_SIZE=8 -DCMAKE_BUILD_TYPE=Release
-      working-directory: ${{github.workspace}}/build/linux64
+      working-directory: ${{github.workspace}}/build/linux
     - name: Build flatcc_cli
       run: |
         cmake --build . --target flatcc_cli --config Release
@@ -75,7 +75,7 @@ jobs:
       uses: jwlawson/actions-setup-cmake@v1.9
     - name: Create Build Directory
       run: |
-        mkdir -p build/osx64
+        mkdir -p build/osx
     - name: Configure CMake
       run: |
         cmake ../.. -DBUILD_SHARED_LIBS=ON -DFLATCC_OFFSET_SIZE=8 -DCMAKE_BUILD_TYPE=Release
