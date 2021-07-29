@@ -12,11 +12,12 @@ jobs:
     - uses: msys2/setup-msys2@v2
     - name: Install dependencies
       run: |
-        msys2 -c 'pacman -S --noconfirm libxslt base-devel'
+        msys2 -c 'pacman -S --noconfirm base-devel mingw-w64-x86_64-cmake'
     - name: Create Build Directory
       run: |
         mkdir -p build/mingw64
     - name: Configure CMake
+      shell: msys2 {0}
       run: |
         cmake -G "MinGW Makefiles" ../.. -DBUILD_SHARED_LIBS=ON -DFLATCC_OFFSET_SIZE=8 -DCMAKE_BUILD_TYPE=Release
       working-directory: ${{github.workspace}}/build/mingw64
