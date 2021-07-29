@@ -1,5 +1,4 @@
-OS-X & Ubuntu: [![Build Status](https://travis-ci.org/dvidelabs/flatcc.svg?branch=master)](https://travis-ci.org/dvidelabs/flatcc)
-Windows: [![Windows Build Status](https://ci.appveyor.com/api/projects/status/github/dvidelabs/flatcc?branch=master&svg=true)](https://ci.appveyor.com/project/dvidelabs/flatcc)
+[![CodeFactor](https://www.codefactor.io/repository/github/stirlinglabs/flatcc/badge)](https://www.codefactor.io/repository/github/stirlinglabs/flatcc)
 
 
 _The JSON parser may change the interface for parsing union vectors in a
