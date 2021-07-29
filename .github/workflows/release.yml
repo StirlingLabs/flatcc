@@ -119,11 +119,11 @@ jobs:
           # create artifact directory
           mkdir artifacts/
           # create linux release
-          tar czf artifacts/flatcc-linux64.tar.gz -C linux/ $(find linux -type f -name "*.so" -exec basename {} \;) linux/flatcc
+          tar czf artifacts/flatcc-linux64.tar.gz -C linux/ $(find linux/lib -type f -name "*.so" -exec basename {} \;) linux/flatcc
           # create osx release
-          tar czf artifacts/flatcc-osx64.tar.gz -C osx/ $(find osx -type f -name "*.dylib" -exec basename {} \;) osx/flatcc
+          tar czf artifacts/flatcc-osx64.tar.gz -C osx/ $(find osx/lib -type f -name "*.dylib" -exec basename {} \;) osx/flatcc
           # create windows release
-          tar czf artifacts/flatcc-win64.tar.gz -C windows/ $(find windows -type f -name "*.* -exec basename {} \;)
+          tar czf artifacts/flatcc-win64.tar.gz -C windows/ $(find windows -type f -name "*.*" -exec basename {} \;)
       - name: Release
         uses: softprops/action-gh-release@v1
         if: startsWith(github.ref, 'refs/tags/')
