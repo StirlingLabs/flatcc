@@ -42,6 +42,8 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v2
+    - name: Setup cmake
+      uses: jwlawson/actions-setup-cmake@v1.9
     - name: Create Build Directory
       run: |
         mkdir -p build/linux64
@@ -69,6 +71,8 @@ jobs:
     runs-on: macos-latest
     steps:
     - uses: actions/checkout@v2
+    - name: Setup cmake
+      uses: jwlawson/actions-setup-cmake@v1.9
     - name: Create Build Directory
       run: |
         mkdir -p build/osx64
