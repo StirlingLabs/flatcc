@@ -59,13 +59,17 @@ jobs:
       run: |
         cmake --build . --target flatccrt --config Release
       working-directory: ${{github.workspace}}/build/linux
+    - name: Create Osx Directory and Copy artifacts/
+      run: |
+        mkdir linux
+        cp lib/*.* linux/
+        cp bin/flatcc linux/
     - name: Upload artifact
       uses: actions/upload-artifact@v2
       with:
         name: flatcc-linux
         path: |
-          lib/*.*
-          bin/flatcc
+          linux
   build-osx:
     name: Build for OSX
     runs-on: macos-latest
@@ -88,13 +92,17 @@ jobs:
       run: |
         cmake --build . --target flatccrt --config Release
       working-directory: ${{github.workspace}}/build/osx
+    - name: Create Osx Directory and Copy artifacts/
+      run: |
+        mkdir osx
+        cp lib/*.* osx/
+        cp bin/flatcc osx/
     - name: Upload artifact
       uses: actions/upload-artifact@v2
       with:
         name: flatcc-osx
         path: |
-          lib/*.*
-          bin/flatcc
+          osx
   create-release:
     runs-on: ubuntu-latest
     needs: [build-win,build-linux,build-osx]
@@ -119,9 +127,9 @@ jobs:
           # create artifact directory
           mkdir artifacts/
           # create linux release
-          tar czf artifacts/flatcc-linux64.tar.gz -C linux/ $(find linux/lib -type f -name "*.so" -exec basename {} \;) bin/flatcc
+          tar czf artifacts/flatcc-linux64.tar.gz -C linux/ $(find linux/lib -type f -name "*.so" -exec basename {} \;) flatcc
           # create osx release
-          tar czf artifacts/flatcc-osx64.tar.gz -C osx/ $(find osx -type f -name "*.dylib" -exec basename {} \;) bin/flatcc
+          tar czf artifacts/flatcc-osx64.tar.gz -C osx/ $(find osx -type f -name "*.dylib" -exec basename {} \;) flatcc
           # create windows release
           tar czf artifacts/flatcc-win64.tar.gz -C windows/ $(find windows -type f -name ".*" -exec basename {} \;)
       - name: Release
