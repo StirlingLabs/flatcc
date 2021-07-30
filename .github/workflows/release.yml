@@ -127,7 +127,7 @@ jobs:
           # create artifact directory
           mkdir artifacts/
           # create linux release
-          tar czf artifacts/flatcc-linux64.tar.gz -C linux/ $(find linux/lib -type f -name "*.so" -exec basename {} \;) flatcc
+          tar czf artifacts/flatcc-linux64.tar.gz -C linux/ $(find linux -type f -name "*.so" -exec basename {} \;) flatcc
           # create osx release
           tar czf artifacts/flatcc-osx64.tar.gz -C osx/ $(find osx -type f -name "*.dylib" -exec basename {} \;) flatcc
           # create windows release
