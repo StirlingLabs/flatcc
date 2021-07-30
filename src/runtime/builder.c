@@ -191,7 +191,7 @@ int flatcc_builder_default_alloc(void *alloc_context, iovec_t *b, size_t request
 #define table_limit (FLATBUFFERS_VOFFSET_MAX - field_size + 1)
 #define data_limit (FLATBUFFERS_UOFFSET_MAX - field_size + 1)
 
-#define set_identifier(id) memcpy(&B->identifier, (id) ? (void *)(id) : (void *)_pad, identifier_size)
+#define set_identifier(id) strncpy((char * restrict)&B->identifier, (id) ? (void *)(id) : (void *)_pad, identifier_size)
 
 /* Must also return true when no buffer has been started. */
 #define is_top_buffer(B) (B->nest_id == 0)
