@@ -131,7 +131,7 @@ jobs:
           # create osx release
           tar czf artifacts/flatcc-osx64.tar.gz -C osx/ $(find osx -type f -name "*.dylib" -exec basename {} \;) flatcc
           # create windows release
-          tar czf artifacts/flatcc-win64.tar.gz -C windows/ $(find windows -type f -name ".*" -exec basename {} \;)
+          tar czf artifacts/flatcc-win64.tar.gz -C windows/ $(find windows -type f -name "*.*" -exec basename {} \;)
       - name: Release
         uses: softprops/action-gh-release@v1
         if: startsWith(github.ref, 'refs/tags/')
