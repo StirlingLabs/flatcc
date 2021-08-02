@@ -54,25 +54,22 @@ jobs:
       uses: jwlawson/actions-setup-cmake@v1.9
     - name: Create Build Directory
       run: |
-        mkdir -p build/linux
+        mkdir -p build/Release
     - name: Configure CMake
       run: |
         cmake ../.. -DBUILD_SHARED_LIBS=ON -DFLATCC_OFFSET_SIZE=8 -DCMAKE_BUILD_TYPE=Release
-      working-directory: ${{github.workspace}}/build/linux
+      working-directory: ${{github.workspace}}/build/Release
     - name: Build flatcc_cli
       run: |
         cmake --build . --target flatcc_cli --config Release
-      working-directory: ${{github.workspace}}/build/linux
+      working-directory: ${{github.workspace}}/build/Release
     - name: Build flatccrt
       run: |
         cmake --build . --target flatccrt --config Release
-      working-directory: ${{github.workspace}}/build/linux
-    - name: Init Test
-      run: |
-        scripts/initbuild.sh
+      working-directory: ${{github.workspace}}/build/Release
     - name: Run Test
       run: |
-        scripts/test.sh
+        scripts/test.sh --no-clean
     - name: Create Linux Directory and Copy artifacts/
       run: |
         mkdir linux
@@ -96,33 +93,30 @@ jobs:
       uses: jwlawson/actions-setup-cmake@v1.9
     - name: Create Build Directory
       run: |
-        mkdir -p build/osx
+        mkdir -p build/Release
     - name: Configure CMake
       run: |
         cmake ../.. -DBUILD_SHARED_LIBS=ON -DFLATCC_OFFSET_SIZE=8 -DCMAKE_BUILD_TYPE=Release
-      working-directory: ${{github.workspace}}/build/osx
+      working-directory: ${{github.workspace}}/build/Release
     - name: Build flatcc_cli
       run: |
         cmake --build . --target flatcc_cli --config Release
-      working-directory: ${{github.workspace}}/build/osx
+      working-directory: ${{github.workspace}}/build/Release
     - name: Build flatccrt
       run: |
         cmake --build . --target flatccrt --config Release
-      working-directory: ${{github.workspace}}/build/osx
-    - name: Init Test
-      run: |
-        scripts/initbuild.sh
+      working-directory: ${{github.workspace}}/build/Release
     - name: Run Test
       run: |
-        scripts/test.sh
-    - name: Create Osx Directory and Copy artifacts/
+        scripts/test.sh --no-clean
+    - name: Create MacOS Directory and Copy artifacts/
       run: |
-        mkdir osx
-        cp lib/*.* osx/
-        cp bin/flatcc osx/
+        mkdir MacOS
+        cp lib/*.* MacOS/
+        cp bin/flatcc MacOS/
     - name: Upload artifact
       uses: actions/upload-artifact@v2
       with:
-        name: flatcc-osx
+        name: flatcc-MacOS
         path: |
-          osx
+          MacOS
