@@ -67,9 +67,9 @@ jobs:
       run: |
         cmake --build . --target flatccrt --config Release
       working-directory: ${{github.workspace}}/build/Release
-    - name: Run Test
-      run: |
-        scripts/test.sh --no-clean
+    # - name: Run Test
+    #   run: |
+    #     scripts/test.sh --no-clean
     - name: Create Linux Directory and Copy artifacts/
       run: |
         mkdir linux
@@ -106,9 +106,9 @@ jobs:
       run: |
         cmake --build . --target flatccrt --config Release
       working-directory: ${{github.workspace}}/build/Release
-    - name: Run Test
-      run: |
-        scripts/test.sh --no-clean
+    # - name: Run Test
+    #   run: |
+    #     scripts/test.sh --no-clean
     - name: Create MacOS Directory and Copy artifacts/
       run: |
         mkdir MacOS
