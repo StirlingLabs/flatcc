@@ -67,10 +67,13 @@ jobs:
       run: |
         cmake --build . --target flatccrt --config Release
       working-directory: ${{github.workspace}}/build/linux
+    - name: Init Test
+      run: |
+        scripts/initbuild.sh
     - name: Run Test
       run: |
         scripts/test.sh
-    - name: Create Osx Directory and Copy artifacts/
+    - name: Create Linux Directory and Copy artifacts/
       run: |
         mkdir linux
         cp lib/*.* linux/
@@ -81,8 +84,8 @@ jobs:
         name: flatcc-linux
         path: |
           linux
-  build-osx:
-    name: Build for OSX
+  build-macos:
+    name: Build for MacOS
     runs-on: macos-latest
     steps:
     - uses: actions/checkout@v2
@@ -106,6 +109,12 @@ jobs:
       run: |
         cmake --build . --target flatccrt --config Release
       working-directory: ${{github.workspace}}/build/osx
+    - name: Init Test
+      run: |
+        scripts/initbuild.sh
+    - name: Run Test
+      run: |
+        scripts/test.sh
     - name: Create Osx Directory and Copy artifacts/
       run: |
         mkdir osx
