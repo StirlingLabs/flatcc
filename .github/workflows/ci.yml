@@ -2,7 +2,7 @@ name: Integration
 on:
   pull_request:
   push:
-    branches: [ master, develop ]
+    branches: [ master]
 jobs:
   build-win:
     name: Build for Windows

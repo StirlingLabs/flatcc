@@ -31,8 +31,6 @@ jobs:
         token:  ${{ github.token }}
         title: 'Upstream changes in flatcc, ${{ steps.date.outputs.today }}'
         branch: check-flatcc-upstream-${{ steps.date.outputs.today }}
-        reviewers: |
-          TYoungSL
         body: |
           Please check changes from upstream flatcc master branch.
         labels: |
