@@ -22,9 +22,8 @@ else
     shift
 fi
 
-# We want to run the tests as in the previous build..!
-# echo "building before tests ..."
-# $ROOT/scripts/build.sh $DEBUG
+echo "building before tests ..."
+$ROOT/scripts/build.sh $DEBUG
 
 echo "running test in debug build ..."
 cd $DBGDIR && ctest $ROOT
