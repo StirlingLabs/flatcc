@@ -14,12 +14,13 @@ jobs:
         ref: master
     - name: Pull upstream changes
       id: sync
-      uses: aormsby/Fork-Sync-With-Upstream-action@v2.3
+      uses: aormsby/Fork-Sync-With-Upstream-action@v3.0
       with:
         upstream_repository: dvidelabs/flatcc
         upstream_branch: master
         target_branch: master
-        git_pull_args: '--unshallow'
+        upstream_pull_args: '--unshallow'
+        git_config_pull_rebase: true
         github_token: ${{ github.token }}
     - name: Create Date Variable
       id: date
