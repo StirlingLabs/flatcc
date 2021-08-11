@@ -1074,6 +1074,24 @@ static void gen_forward_decl(fb_output_t *out, fb_compound_type_t *ct)
     assert(ct->symbol.kind == fb_is_struct || ct->symbol.kind == fb_is_table);
 
     fb_compound_name(ct, &snt);
+
+    fprintf(out->fp, "static const char s_%s_name[] = \"%.*s\";\n",
+            snt.text, (int)ct->symbol.ident->len, ct->symbol.ident->text);
+
+
+    fprintf(out->fp, "static const char s_%s_symbol[] = \"", snt.text);
+    if (ct->scope) {
+        for (fb_symbol_t *name = ct->scope->name; name; name = name->link) {
+            fprintf(out->fp, "%.*s.",
+                    (int)name->ident->len,
+                    name->ident->text);
+        }
+    }
+
+    fprintf(out->fp, "%.*s\";\n",
+            (int)ct->symbol.ident->len,
+            ct->symbol.ident->text);
+
     if (ct->symbol.kind == fb_is_struct) {
         if (ct->size == 0) {
             gen_panic(out, "internal error: unexpected empty struct");
