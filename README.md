@@ -1,5 +1,11 @@
 [![CodeFactor](https://www.codefactor.io/repository/github/stirlinglabs/flatcc/badge)](https://www.codefactor.io/repository/github/stirlinglabs/flatcc)
+[![Codacy Badge](https://app.codacy.com/project/badge/Grade/37f2a87096e641f6972e4d178091b10d)](https://www.codacy.com/gh/StirlingLabs/flatcc/dashboard?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=StirlingLabs/flatcc&amp;utm_campaign=Badge_Grade)
+[![Test Status](https://badgen.net/github/checks/StirlingLabs/flatcc?icon=github)](https://github.com/StirlingLabs/flatcc/actions)
+[![Latest Release](https://badgen.net/github/release/StirlingLabs/flatcc/stable:color?icon=github)](https://github.com/StirlingLabs/flatcc/releases/latest)
 
+This fork provides the ability to select between 16, 32 & 64-bit offsets in buffers, to minimise data transmission or facilitate buffers >1Gb.  Selecting 32-bit offset maintains compatibility with [FlatBuffers](https://github.com/google/flatbuffers) while selecting 64-bit offset provides compatibility with [BigBuffers](https://github.com/StirlingLabs/BigBuffers).  We are [working with upstream](https://github.com/dvidelabs/flatcc/pull/206) and hope that it will be merged soon.
+
+----
 
 _The JSON parser may change the interface for parsing union vectors in a
 future release which requires code generation to match library
