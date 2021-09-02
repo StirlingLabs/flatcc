@@ -15,7 +15,7 @@ jobs:
     #     msys2 -c 'pacman -S --noconfirm make mingw-w64-x86_64-toolchain mingw-w64-x86_64-cmake'
     - name: Add Path Msys64 Directory
       run: |
-        echo "c:\msys64" | Out-File -FilePath $env:GITHUB_PATH -Encoding utf8 -Appen
+        echo "c:\msys64" | Out-File -FilePath $env:GITHUB_PATH -Encoding utf8 -Append
     - name: Create Build Directory
       run: |
         mkdir -p build/mingw64
