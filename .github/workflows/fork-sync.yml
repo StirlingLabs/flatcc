@@ -21,7 +21,6 @@ jobs:
         target_sync_branch: master
         upstream_pull_args: '--unshallow'
         git_config_pull_rebase: true
-        upstream_repo_access_token: ${{ github.token }}
         target_repo_token: ${{ github.token }}
     - name: Create Date Variable
       id: date
