@@ -9,25 +9,28 @@ jobs:
     runs-on: windows-latest
     steps:
     - uses: actions/checkout@v2
-    - uses: msys2/setup-msys2@v2
-    - name: Install dependencies
+    # - uses: msys2/setup-msys2@v2
+    # - name: Install dependencies
+    #   run: |
+    #     msys2 -c 'pacman -S --noconfirm make mingw-w64-x86_64-toolchain mingw-w64-x86_64-cmake'
+    - name: Add Path Msys64 Directory
       run: |
-        msys2 -c 'pacman -S --noconfirm make mingw-w64-x86_64-toolchain mingw-w64-x86_64-cmake'
+        echo "c:\msys64" | Out-File -FilePath $env:GITHUB_PATH -Encoding utf8 -Appen
     - name: Create Build Directory
       run: |
         mkdir -p build/mingw64
     - name: Configure CMake
-      shell: msys2 {0}
+      shell: msys2_shell.cmd -defterm -no-start -here -mingw64 {0}
       run: |
         cmake -G "MinGW Makefiles" ../.. -DBUILD_SHARED_LIBS=ON -DFLATCC_OFFSET_SIZE=8 -DCMAKE_BUILD_TYPE=Release
       working-directory: ${{github.workspace}}/build/mingw64
     - name: Build flatcc_cli
-      shell: msys2 {0}
+      shell: msys2_shell.cmd -defterm -no-start -here -mingw64 {0}
       run: |
         cmake --build . --target flatcc_cli --config Release
       working-directory: ${{github.workspace}}/build/mingw64
     - name: Build flatccrt
-      shell: msys2 {0}
+      shell: msys2_shell.cmd -defterm -no-start -here -mingw64 {0}
       run: |
         cmake --build . --target flatccrt --config Release
       working-directory: ${{github.workspace}}/build/mingw64
@@ -42,8 +45,8 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v2
-    - name: Setup cmake
-      uses: jwlawson/actions-setup-cmake@v1.9
+    # - name: Setup cmake
+    #   uses: jwlawson/actions-setup-cmake@v1.9
     - name: Create Build Directory
       run: |
         mkdir -p build/linux
@@ -75,8 +78,8 @@ jobs:
     runs-on: macos-latest
     steps:
     - uses: actions/checkout@v2
-    - name: Setup cmake
-      uses: jwlawson/actions-setup-cmake@v1.9
+    # - name: Setup cmake
+    #   uses: jwlawson/actions-setup-cmake@v1.9
     - name: Create Build Directory
       run: |
         mkdir -p build/osx
