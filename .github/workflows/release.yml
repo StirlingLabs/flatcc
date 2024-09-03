@@ -108,17 +108,17 @@ jobs:
     needs: [build-win,build-linux,build-osx]
     steps:
       - name: Download flatcc windows
-        uses: actions/download-artifact@v2
+        uses: actions/download-artifact@v4.1.7
         with:
           name: flatcc-win
           path: windows
       - name: Download flatcc linux
-        uses: actions/download-artifact@v2
+        uses: actions/download-artifact@v4.1.7
         with:
           name: flatcc-linux
           path: linux
       - name: Download flatcc osx
-        uses: actions/download-artifact@v2
+        uses: actions/download-artifact@v4.1.7
         with:
           name: flatcc-osx
           path: osx
